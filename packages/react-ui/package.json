@@ -22,6 +22,14 @@
     "cjs",
     "esm"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-site/mk-packages.git"
+  },
+  "bugs": {
+      "url": "https://github.com/mk-site/mk-packages/issues"
+  },
+  "homepage": "https://mk-site.github.io/mk-packages/",
   "devDependencies": {
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",

@@ -17,6 +17,14 @@
     ],
     "author": "huxing",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mk-site/mk-packages.git"
+    },
+    "bugs": {
+        "url": "https://github.com/mk-site/mk-packages/issues"
+    },
+    "homepage": "https://mk-site.github.io/mk-packages/",
     "dependencies": {
         "antd": "^4.16.9",
         "mk-better-cli": "0.0.2",

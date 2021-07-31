@@ -22,16 +22,22 @@
     "cjs",
     "esm"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-site/mk-packages.git"
+  },
+  "bugs": {
+      "url": "https://github.com/mk-site/mk-packages/issues"
+  },
+  "homepage": "https://mk-site.github.io/mk-packages/",
   "devDependencies": {
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "@umijs/test": "^3.5.13",
+    "antd": "^4.16.9",
     "eslint-config-mkscanner": "^1.0.1",
     "mk-better-cli": "0.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
-  },
-  "dependencies": {
-    "antd": "^4.16.9"
   }
 }

@@ -13,6 +13,14 @@
     "ts",
     "tsx"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-site/mk-packages.git"
+  },
+  "bugs": {
+      "url": "https://github.com/mk-site/mk-packages/issues"
+  },
+  "homepage": "https://mk-site.github.io/mk-packages/",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
