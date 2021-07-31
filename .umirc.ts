@@ -4,11 +4,12 @@ console.log('环境变量', process.env.NODE_ENV);
 export default defineConfig({
     mode: 'site',
     title: 'mk站点文档',
-    publicPath: process.env.NODE_ENV !== 'production' ? '/' : '/mk-packages/',
+    // publicPath: process.env.NODE_ENV !== 'production' ? '/mk-packages/' : '/mk-packages/',
+    publicPath: './',
     outputPath: 'docs',
-    // history: {
-    //     type: 'hash'
-    // },
+    history: {
+        type: 'hash'
+    },
     resolve: {
         includes: [
             'site-docs',
