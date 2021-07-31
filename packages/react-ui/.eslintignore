@@ -1,6 +1,6 @@
 .eslintrc.js
-esm
-cjs
-umd
+/esm
+/cjs
+/umd
 *.md
 *.css

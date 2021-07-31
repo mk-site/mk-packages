@@ -1,4 +1,5 @@
-import { defineConfig } from 'umi'
+// @ts-ignore
+import { defineConfig } from 'umi';
 // dumi 文档配置
 export default defineConfig({
     mode: 'site',
@@ -13,9 +14,13 @@ export default defineConfig({
     },
     navs: [
         {
+            title: 'guide',
+            path: '/guide',
+        },
+        {
             title: 'reactUI',
             path: '/reactui',
-          },
+        },
         {
             title: 'reactHooks',
             path: '/reacthooks',

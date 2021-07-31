@@ -3,4 +3,5 @@ module.exports = {
     extends: ['mkscanner/tsx'],
     rules: {
     },
+    includes: ['src'],
 };
