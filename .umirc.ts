@@ -4,12 +4,13 @@ import { defineConfig } from 'umi'
 export default defineConfig({
     mode: 'site',
     title: 'mk站点文档',
+    outputPath: 'docs',
     // history: {
     //     type: 'hash'
     // },
     resolve: {
         includes: [
-            'docs',
+            'site-docs',
         ],
     },
     navs: [

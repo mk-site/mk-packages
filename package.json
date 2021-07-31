@@ -7,10 +7,10 @@
     "docs:dev": "mk docs dev",
     "docs:build": "mk docs build",
     "copy": "npm run copy:react-ui & npm run copy:vue-eslint & npm run copy:react-eslint & copy:react-hooks",
-    "copy:react-ui": "rimraf docs/react-ui && mk copy packages/react-ui/src/**/**/*.md -o docs/reactui -w",
-    "copy:vue-eslint": "rimraf docs/vue-eslint && mk copy packages/vue-eslint/**/*.md -o docs/vueeslint -w",
-    "copy:react-eslint": "rimraf docs/react-eslint && mk copy packages/react-eslint/**/*.md -o docs/reacteslint -w",
-    "copy:react-hooks": "rimraf docs/react-hooks && mk copy packages/react-hooks/src/**/**/*.md -o docs/reacthooks -w",
+    "copy:react-ui": "rimraf site-docs/react-ui && mk copy packages/react-ui/src/**/**/*.md -o site-docs/reactui -w",
+    "copy:vue-eslint": "rimraf site-docs/vue-eslint && mk copy packages/vue-eslint/**/*.md -o site-docs/vueeslint -w",
+    "copy:react-eslint": "rimraf site-docs/react-eslint && mk copy packages/react-eslint/**/*.md -o site-docs/reacteslint -w",
+    "copy:react-hooks": "rimraf site-docs/react-hooks && mk copy packages/react-hooks/src/**/**/*.md -o site-docs/reacthooks -w",
     "update:version": "node app.js"
   },
   "workspaces": [
