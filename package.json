@@ -1,24 +1,25 @@
 {
-    "name": "mk-docs-site",
-    "version": "0.0.1",
-    "description": "mk文档站点",
-    "main": "index.js",
-    "scripts": {
-      "docs:dev": "mk docs dev",
-      "docs:build": "mk docs build"
-    },
-    "author": "huxing",
-    "license": "MIT",
-    "files": [
-      "docs"
-    ],
-    "devDependencies": {
-      "@types/react": "^17.0.11",
-      "@types/react-dom": "^17.0.8",
-      "@umijs/test": "^3.5.13",
-      "dumi": "^1.1.24",
-      "eslint-config-mkscanner": "^1.0.2",
-      "mk-better-cli": "0.0.1-beta2"
-    }
+  "name": "mk-docs-site",
+  "description": "mk文档站点",
+  "private": true,
+  "scripts": {
+    "dev": "npm run copy & npm run docs:dev",
+    "docs:dev": "mk docs dev",
+    "docs:build": "mk docs build",
+    "copy": "npm run copy:react-ui & npm run copy:vue-eslint & npm run copy:react-eslint",
+    "copy:react-ui": "rimraf docs/react-ui && mk copy packages/react-ui/src/**/**/*.md -o docs/reactui -w",
+    "copy:vue-eslint": "rimraf docs/vue-eslint && mk copy packages/vue-eslint/**/*.md -o docs/vueeslint -w",
+    "copy:react-eslint": "rimraf docs/react-eslint && mk copy packages/react-eslint/**/*.md -o docs/reacteslint -w",
+    "copy:react-hooks": "rimraf docs/react-hooks && mk copy packages/react-hooks/src/**/**/*.md -o docs/reacthooks -w",
+    "update:version": "node app.js"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "author": "huxing",
+  "license": "MIT",
+  "dependencies": {
+    "mk-better-cli": "0.0.2",
+    "mk-react-ui": "0.0.1-beta1"
   }
-  
+}
