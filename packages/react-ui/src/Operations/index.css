@@ -1,0 +1,23 @@
+.site-hook-operation-list .item {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    cursor: pointer;
+  }
+  .site-hook-operation-list .item:focus {
+    outline: none;
+  }
+  .site-hook-operation-list .item.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  .site-hook-operation-list .item.horizontal + .item.horizontal {
+    margin-left: 6px;
+  }
+  .site-hook-operation-list .item.vertical {
+    display: block;
+  }
+  .site-hook-operation-list .item.vertical + .item.vertical {
+    margin-top: 2px;
+  }
+  

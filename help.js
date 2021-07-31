@@ -5,7 +5,7 @@ const fs = require('fs');
 const pkgFile=fs.readFileSync('./package.json');
 const pkg=JSON.parse(pkgFile);
 const packages = [
-    // 'packages/react-hooks',
+    'packages/react-hooks',
     'packages/react-ui',
 ];
 

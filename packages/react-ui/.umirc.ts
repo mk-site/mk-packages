@@ -2,5 +2,5 @@ import { defineConfig } from 'umi';
 
 export default defineConfig({
     mode: 'doc',
-    title: '前端文档',
+    title: 'react组件库',
 });

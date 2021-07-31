@@ -1,8 +1,8 @@
 {
   "name": "mk-react-hooks",
-  "version": "0.0.1-beta2",
+  "version": "0.0.1-beta3",
   "description": "",
-  "main": "index.js",
+  "main": "esm/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:umd": "rimraf umd && mk compile-rollup src -w",
@@ -30,5 +30,8 @@
     "mk-better-cli": "0.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "antd": "^4.16.9"
   }
 }
