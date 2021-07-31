@@ -3,13 +3,9 @@ import { defineConfig } from 'umi'
 export default defineConfig({
     mode: 'site',
     title: 'mk站点文档',
-    // publicPath: './',
     publicPath: '/mk-packages/',
     base: '/mk-packages/',
     outputPath: 'docs',
-    // history: {
-    //     type: 'hash'
-    // },
     resolve: {
         includes: [
             'site-docs',
@@ -32,5 +28,15 @@ export default defineConfig({
             title: 'vueEslint',
             path: '/vueeslint',
         }
+    ],
+    metas: [
+        {
+          name: 'keywords',
+          content: 'vue3-hooks, vue3-components, mk, mk-cli, mk-react, react, mk-hooks, eslint, mk-eslint, vue3, mk-vue3',
+        },
+        {
+          name: 'description',
+          content: 'vue3, hooks, react-hooks, vue3-hooks, react, vue3组件库, vue3 vuex, mk脚手架、mk组件库，mk hooks库',
+        },
     ],
 });
