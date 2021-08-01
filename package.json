@@ -27,9 +27,9 @@
     "homepage": "https://mk-site.github.io/mk-packages/",
     "dependencies": {
         "antd": "^4.16.9",
-        "mk-better-cli": "0.0.2",
-        "mk-react-hooks": "0.0.1-beta3",
-        "mk-react-ui": "0.0.1-beta5",
+        "mk-better-cli": "0.0.3",
+        "mk-react-hooks": "0.0.1-beta4",
+        "mk-react-ui": "0.0.1-beta6",
         "vinyl-fs": "^3.0.3"
     }
 }

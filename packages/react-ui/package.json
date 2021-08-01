@@ -1,6 +1,6 @@
 {
   "name": "mk-react-ui",
-  "version": "0.0.1-beta5",
+  "version": "0.0.1-beta6",
   "description": "",
   "main": "esm/index.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "@umijs/test": "^3.5.13",
     "antd": "^4.16.9",
     "eslint-config-mkscanner": "^1.0.2",
-    "mk-better-cli": "0.0.2",
+    "mk-better-cli": "0.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
