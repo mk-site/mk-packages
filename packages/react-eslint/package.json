@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-mkscanner",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "eslint-config-mkscanner mk配置eslint扫描",
   "main": "index.js",
   "scripts": {

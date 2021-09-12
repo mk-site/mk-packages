@@ -38,7 +38,7 @@ module.exports = {
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['error'],
         'react/jsx-indent': [1, 4],
-        'import/extensions': ['error', 'never', { svg: 'always' }],
+        'import/extensions': 0,
         'jsx-a11y/alt-text': 0,
         'jsx-a11y/click-events-have-key-events': 0,
         'jsx-a11y/no-noninteractive-element-interactions': 'off',
