@@ -1,35 +1,34 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
-        node: true,
-    },
-    extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaVersion: 12,
-        sourceType: 'module',
-    },
-    plugins: [
-        '@typescript-eslint',
-    ],
-    rules: {
-        'no-use-before-define': 0,
-        'import/no-extraneous-dependencies': 0,
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': ['error'],
-        indent: ['error', 4, {
+    "extends": ["airbnb-typescript/base"],
+    "rules": {
+        "@typescript-eslint/indent": ['error', 4, {
             SwitchCase: 1,
-            MemberExpression: 1,
+            VariableDeclarator: 1,
+            outerIIFEBody: 1,
+            // MemberExpression: null,
+            FunctionDeclaration: {
+              parameters: 1,
+              body: 1
+            },
+            FunctionExpression: {
+              parameters: 1,
+              body: 1
+            },
+            CallExpression: {
+              arguments: 1
+            },
+            ArrayExpression: 1,
+            ObjectExpression: 1,
+            ImportDeclaration: 1,
             flatTernaryExpressions: false,
-        }],
-        quotes: ['error', 'single'],
-        'no-console': 0,
-        'max-len': ['error', { code: 160 }],
-        'import/extensions': ['error', 'never', { svg: 'always' }],
-    },
-};
-  
+            // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+            ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXFragment', 'JSXOpeningFragment', 'JSXClosingFragment', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+            ignoreComments: false
+          }],
+        "quotes": ["error", "single"],
+        "no-console": 0,
+        "max-len": ["error", { "code": 160 }],
+        "import/extensions": 0,
+        "import/no-extraneous-dependencies": 0
+    }
+}
