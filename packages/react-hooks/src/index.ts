@@ -23,6 +23,7 @@ import useScroll from './useScroll';
 import useSetState from './useSetState';
 import useSize from './useSize';
 import useVirtualList from './useVirtualList';
+import useModal from './useModal';
 
 const version = '__version__'; // 项目构建__version__会自动替换为package.json文件的version
 
@@ -53,4 +54,5 @@ export {
     useSetState,
     useSize,
     useVirtualList,
+    useModal,
 };

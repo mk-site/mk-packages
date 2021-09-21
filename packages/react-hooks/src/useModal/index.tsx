@@ -4,37 +4,79 @@ import { ModalProps } from 'antd/es/modal';
 import useImmutable from '../useImmutable';
 import 'antd/lib/modal/style/css';
 
-interface UseMdoal extends ModalProps {}
+export interface IUseModal extends ModalProps {}
 
-function useModal<T = any>(options: UseMdoal = {}) {
+function useModal<T = any, K = IUseModal>(options: IUseModal = {}, debug?: boolean): {
+    show: (childData?: T, modalData?: K) => () => void,
+    hide: () => void,
+    visible: boolean,
+    RenderModal: React.FC<any>
+    customref: {
+        current: any
+    }
+} {
   const [visible, setVisible] = useState(false);
-  const dataRef = useRef<T>(null);
+  const childRef = useRef<T>(null);
 
-  const propsRef = useRef(options);
-  propsRef.current = options;
+  const optionsRef = useRef(options);
+  optionsRef.current = options;
+
+  const modalDataRef = useRef({});
+
   const visibleRef = useRef(visible);
   visibleRef.current = visible;
 
-  const show = useCallback((data?: T) => {
-    dataRef.current = data;
-    setVisible(true);
-  }, []);
+  const customref = useRef();
 
   const hide = useCallback(() => setVisible(false), []);
 
+  const show = useCallback((childData?: T, modalData?: K) => {
+    childRef.current = childData || {} as T;
+    modalDataRef.current = modalData || {};
+    setVisible(true);
+    return hide;
+  }, []);
+
   const RenderModal = useImmutable(({ children, ...rest }) => {
+    if (!visibleRef.current) {
+        return null;
+    }
     const props = {
-      destroyOnClose: true,
-      onCancel: hide,
-      onOk: hide,
-      visible: visibleRef.current,
-      ...rest,
-      ...propsRef.current
+        destroyOnClose: true,
+        onCancel: hide,
+        onOk: hide,
+        cancelText: '取消',
+        onText: '确定',
+        keyboard: false,
+        maskClosable: false,
+        visible: visibleRef.current,
+        ...rest,
+        ...optionsRef.current,
+        ...modalDataRef.current,
     };
+    // 自定注入customRef
+    if (props.footer && typeof props.footer !== 'string') {
+        props.footer = React.cloneElement(props.footer as any, {
+            customref
+        });
+    }
+    // 自定注入customRef
+    if (props.title  && typeof props.title !== 'string') {
+        props.title = React.cloneElement(props.title as any, {
+            customref
+        });
+    }
+    if (debug) {
+        console.log('RenderModal props => ', props);
+    }
+    const childProps = {
+        ...(childRef.current || {}),
+        customref,
+    }
     const node =
       typeof children === 'function'
-        ? children(dataRef.current || {})
-        : React.cloneElement(children, dataRef.current || {});
+        ? children(childProps)
+        : React.cloneElement(children, childProps);
     return <Modal {...props}>{node}</Modal>;
   });
 
@@ -42,36 +84,9 @@ function useModal<T = any>(options: UseMdoal = {}) {
     hide,
     show,
     visible,
-    RenderModal
+    RenderModal,
+    customref,
   };
-}
-
-export function createUseComponent<T = any, P = any>(
-  WrappedComponent: React.ComponentType<
-    T & {
-      customRef: React.MutableRefObject<P | undefined>;
-    }
-  >
-) {
-  return (modalOptions: ModalProps = {}) =>
-    (options: ModalProps = {}) => {
-      const { RenderModal, ...rest } = useModal(options);
-      const ref = useRef<P>();
-
-      const Render = useImmutable((data: T) => {
-        const WrappedComponentProps = {
-          ...data,
-          customRef: ref
-        };
-        return (
-          <RenderModal {...modalOptions}>
-            <WrappedComponent {...WrappedComponentProps} />
-          </RenderModal>
-        );
-      });
-
-      return { ...rest, Render, ref };
-    };
 }
 
 export default useModal;
