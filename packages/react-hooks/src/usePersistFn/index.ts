@@ -7,7 +7,7 @@ const usePersistFn = <T extends (...args: any[]) => any>(fn: T) => {
     if (!persistFn.current) {
         // eslint-disable-next-line func-names
         persistFn.current = function (...args) {
-            return fnRef.current.apply(this, args);
+            return fnRef.current!.apply(this, args);
         } as T;
     }
     return persistFn.current;

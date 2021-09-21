@@ -19,6 +19,10 @@ import useDocumentVisibility from './useDocumentVisibility';
 import useInterval from './useInterval';
 import useUnmountedRef from './useUnmountedRef';
 import useSafeState from './useSafeState';
+import useScroll from './useScroll';
+import useSetState from './useSetState';
+import useSize from './useSize';
+import useVirtualList from './useVirtualList';
 
 const version = '__version__'; // 项目构建__version__会自动替换为package.json文件的version
 
@@ -45,4 +49,8 @@ export {
     useInterval,
     useUnmountedRef,
     useSafeState,
+    useScroll,
+    useSetState,
+    useSize,
+    useVirtualList,
 };
