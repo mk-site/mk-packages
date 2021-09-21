@@ -21,7 +21,7 @@ group:
 ```typescript
 const [count, setCount] = useState(0);
 useWatch(count, (prev) => {
-  alert(`current: ${count}, prev: ${prev}`);
+  console.log(`current: ${count}, prev: ${prev}`);
 });
 ```
 
@@ -29,7 +29,7 @@ useWatch(count, (prev) => {
 
 | 参数   | 说明                                   | 类型       | 默认值                 |
 | ------ | -------------------------------------- | ---------- | ---------------------- |
-| data   | 必须项,被观察的值                      | `any`      | `无`                   |
+| val    | 必须项,被观察的值                      | `any`      | `无`                   |
 | cb     | 必须项,被观察的值改变后的回调函数      | `function` | `无`                   |
 | config | 可选项, 配置是否在首次挂载执行监听回调 | `object`   | `{ immediate: false }` |
 

@@ -13,5 +13,8 @@ group:
 ## API
 
 ```typescript
-const value = useImmutable(() => <div>组件</div>);
+import { useImmutable } from 'mk-react-hooks';
+
+const [count, setCount] = useState(0);
+const value = useImmutable(count);
 ```
