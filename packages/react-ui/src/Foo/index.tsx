@@ -1,6 +1,7 @@
 import React from 'react';
 
 type TFoo = {
+    // eslint-disable-next-line react/require-default-props
     onClick?: (...args: any[]) => any
 }
 

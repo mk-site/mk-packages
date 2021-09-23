@@ -11,41 +11,41 @@ interface Operation {
 }
 
 const Operations = ({ meta, className, layout }: { className?: string; layout?: 'horizontal' | 'vertical'; meta: Array<Operation> }) => (
-  <div className={`${className} site-hook-operation-list`}>
-    {
-      meta
-        .filter((item) => item.visible !== false)
-        .map((item, index) => {
-          const {
-            text, action, render, disable = false, style = {},
-          } = item;
+    <div className={`${className} site-hook-operation-list`}>
+        {
+            meta
+                .filter((item) => item.visible !== false)
+                .map((item, index) => {
+                    const {
+                        text, action, render, disable = false, style = {},
+                    } = item;
 
-          const children = (
-            <span
-              role="button"
-              tabIndex={index}
-              key={text}
-              style={style}
-              onClick={() => action?.()}
-              onKeyPress={() => action?.()}
-              className={`item ${layout} ${disable ? 'disabled' : ''}`}
-            >
-              {text}
-            </span>
-          );
+                    const children = (
+                        <span
+                            role="button"
+                            tabIndex={index}
+                            key={text}
+                            style={style}
+                            onClick={() => action?.()}
+                            onKeyPress={() => action?.()}
+                            className={`item ${layout} ${disable ? 'disabled' : ''}`}
+                        >
+                            {text}
+                        </span>
+                    );
 
-          if (typeof render === 'function') {
-            return render(children, item);
-          }
-          return children;
-        })
-    }
-  </div>
+                    if (typeof render === 'function') {
+                        return render(children, item);
+                    }
+                    return children;
+                })
+        }
+    </div>
 );
 
 Operations.defaultProps = {
-  className: '',
-  layout: 'horizontal',
+    className: '',
+    layout: 'horizontal',
 };
 
 export default Operations;
