@@ -44,7 +44,7 @@ https://zhuanlan.zhihu.com/p/89495112
                     value: '',
                 }
             ],
-            debounce: 300, // 默认为300，自动开启节流
+            debounce: 300, // 默认为300，自动开启节流，输入框需要
             props: {
                 style: {},
                 className: {},
