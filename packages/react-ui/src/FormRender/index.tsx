@@ -12,7 +12,8 @@ import usePersistFn from '../hooks/usePersistFn';
 export * from './types';
 
 const FormRender: React.FC<IFormRender> = (props) => {
-    const { schema, form } = props;
+    const { schema } = props;
+    const [form] = [props.form] || Form.useForm();
     const {
         column = 1,
         meta,

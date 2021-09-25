@@ -5,16 +5,14 @@ import { FormRender, IFormSchema } from '../index';
 import 'antd/dist/antd.css';
 
 export default () => {
-    const [form] = Form.useForm();
+    // const [form] = Form.useForm();
     const onClick = async () => {
-        console.log(form.getFieldsValue());
-        await form.submit();
+        // console.log(form.getFieldsValue());
+        // await form.submit();
         console.log('结束');
     };
     const [schema, setSchema] = useState<IFormSchema>({
         column: 1,
-        // colon: false,
-        gutter: 10,
         widgets: {}, // 自定义组件
         onFinish: (values) => {
             console.log('values', values);
@@ -89,7 +87,8 @@ export default () => {
     });
     return (
         <div>
-            <FormRender form={form} schema={schema} />
+            <FormRender schema={schema} />
+            {/* <FormRender form={form} schema={schema} /> */}
             <Button onClick={onClick}>点击</Button>
         </div>
     );
