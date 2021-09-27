@@ -3,6 +3,7 @@ import React, {
     ReactElement,
     useMemo,
     memo,
+    useEffect,
 } from 'react';
 import {
     Form, FormProps, Row, Col,
@@ -59,6 +60,10 @@ const FormRender: React.FC<IFormRender> = memo((props) => {
     if (schema.debug) {
         console.log('schema => ', schema, '\n', ' form => ', form);
     }
+    // 销毁重置字段
+    useEffect(() => () => {
+        form.resetFields();
+    }, []);
     return (
         <Form
             {...formProps}
