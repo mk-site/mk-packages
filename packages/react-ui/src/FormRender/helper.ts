@@ -9,13 +9,13 @@ function pickProps(source: Record<string, any>, props: string[]) {
 }
 
 const FormPropsPickArray = [
+    'className',
     'style',
     'colon',
     'component',
     'fields',
     'initialValues',
     'labelAlign',
-    // 'labelCol',
     'layout',
     'name',
     'preserve',
@@ -24,13 +24,15 @@ const FormPropsPickArray = [
     'size',
     'validateMessages',
     'validateTrigger',
-    // 'wrapperCol',
+    'labelCol',
+    'wrapperCol',
     'onFieldsChange',
     'onFinish',
     'onFinishFailed',
     'onValuesChange',
 ];
 const FormItemPropsPickArray = [
+    'className',
     'style',
     'colon',
     'dependencies',

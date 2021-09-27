@@ -89,11 +89,12 @@ https://zhuanlan.zhihu.com/p/89495112
     ]
 }
 
-form.getValues submit resetFields
 
-
+// ModalFormRender
 
 // 第二步： TableRender, 包装FormRender组件，增加自定义Table组件属性，自动生成React代码
-
+1、增加表格项配置
+2、增加操作按钮的配置
+3、结合FormRender与Table配置
 
 // 第三步：业务验证使用

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Input } from 'antd';
 // import { FormInstance } from 'antd/es/form';
-import { FormRender, IFormSchema } from '../index';
+import { FormRender, IFormSchema } from './index';
+
 import 'antd/dist/antd.css';
 
 export default () => {
@@ -34,7 +35,7 @@ export default () => {
                 });
             }
         },
-        labelCol: { span: 8 },
+        labelCol: { span: 4 },
         wrapperCol: { span: 16 },
         meta: [
             {
@@ -44,19 +45,14 @@ export default () => {
                 required: true,
             },
             {
-                visible: false,
+                visible: true, // 控制表单数据联动
                 type: 'Input',
                 name: 'enName',
                 label: 'en姓名',
                 required: true,
                 dependencies: ['userName'],
-                style: {
-                    marginBottom: 0,
-                },
                 renderVisible: (obj) => {
-                    console.log(obj.form);
                     const values = obj.form.getFieldsValue();
-                    console.log('渲染', obj.element, values);
                     if (values.userName && values.userName.length > 1) {
                         return true;
                     }
@@ -88,7 +84,6 @@ export default () => {
     return (
         <div>
             <FormRender schema={schema} />
-            {/* <FormRender form={form} schema={schema} /> */}
             <Button onClick={onClick}>点击</Button>
         </div>
     );

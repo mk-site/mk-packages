@@ -1,10 +1,14 @@
-import React from 'react';
+/* eslint-disable react/no-array-index-key */
+import React, { memo } from 'react';
 import {
-    Form, FormInstance, FormItemProps, Space,
+    Form,
+    FormInstance,
+    FormItemProps,
+    Button,
 } from 'antd';
 import { IFormSchemaMetaItem, IFormSchema } from './types';
 import widgets from './widgets';
-import { pickProps, FormItemPropsPickArray } from './helper';
+import { pickProps, FormItemPropsPickArray, isFunction } from './helper';
 
 type PickRules = Pick<FormItemProps, 'rules'>
 
@@ -35,53 +39,57 @@ const pickSource = (element: IFormSchemaMetaItem) => {
     });
     return [...options, ...(element.source || [])];
 };
+export interface IRenderElementProps {
+    form: FormInstance,
+    element: IFormSchemaMetaItem,
+    schema: IFormSchema
+}
 
-const renderElement = (form: FormInstance, element: IFormSchemaMetaItem, schema: IFormSchema) => {
-    if (element.visible === false) {
-        return null;
-    }
+const renderElement: React.FC<IRenderElementProps> = memo(({ form, element, schema }) => {
     const pickRules: PickRules = rulesRequired(element.rules, element);
     const formItemProps = {
         ...pickProps(element, FormItemPropsPickArray),
         ...pickRules,
         ...(element.props || {}),
     };
-    formItemProps.labelCol = {
-        ...(schema.labelCol || {}),
-        ...(formItemProps.labelCol || {}),
-    };
-    formItemProps.wrapperCol = {
-        ...(schema.wrapperCol || {}),
-        ...(formItemProps.wrapperCol || {}),
-    };
     let Comp = widgets[element.type] || (schema.widgets || {})[element.type];
     if (element.childType) {
-        Comp = Comp[element.childType];
+        Comp = Comp ? Comp[element.childType] : null;
     }
+    const renderFunction = () => element.render.call(element, {
+        form, formItemProps, element, Form,
+    });
+    const renderJsx = () => {
+        if (!Comp) {
+            if (schema.debug) {
+                console.warn('组件未渲染成功', element);
+            }
+            return null;
+        }
+        return (
+            <Form.Item {...formItemProps}>
+                <Comp
+                    source={pickSource(element)}
+                    disabled={schema.disabled || element.disabled}
+                    {...(element.widgetProps || {})}
+                />
+            </Form.Item>
+        );
+    };
     if ((Array.isArray(element.dependencies) && element.dependencies.length > 0)) {
         return (
-            <Form.Item dependencies={element.dependencies || []}>
+            <Form.Item noStyle dependencies={element.dependencies || []}>
                 {() => {
                     if (typeof element.renderVisible === 'function') {
                         if (element.renderVisible({
                             form, formItemProps, element, Form,
-                        }) && Comp) {
-                            return (
-                                <Form.Item style={{ marginBottom: 0 }} {...formItemProps}>
-                                    <Comp
-                                        source={pickSource(element)}
-                                        disabled={schema.disabled || element.disabled}
-                                        {...(element.widgetProps || {})}
-                                    />
-                                </Form.Item>
-                            );
+                        })) {
+                            return renderJsx();
                         }
                         return null;
                     }
                     if (typeof element.render === 'function') {
-                        return element.render.call({
-                            form, formItemProps, element, Form,
-                        });
+                        return renderFunction();
                     }
                     if (schema.debug) {
                         console.warn('组件未渲染成功', element);
@@ -93,21 +101,13 @@ const renderElement = (form: FormInstance, element: IFormSchemaMetaItem, schema:
     }
     if (element.shouldUpdate) {
         return (
-            <Form.Item shouldUpdate={element.shouldUpdate}>
+            <Form.Item noStyle shouldUpdate={element.shouldUpdate}>
                 {() => {
                     if (typeof element.renderVisible === 'function') {
                         if (element.renderVisible({
                             form, formItemProps, element, Form,
-                        }) && Comp) {
-                            return (
-                                <Form.Item style={{ marginBottom: 0 }} {...formItemProps}>
-                                    <Comp
-                                        source={pickSource(element)}
-                                        disabled={schema.disabled || element.disabled}
-                                        {...(element.widgetProps || {})}
-                                    />
-                                </Form.Item>
-                            );
+                        })) {
+                            return renderJsx();
                         }
                         if (schema.debug) {
                             console.warn('组件未渲染成功', element);
@@ -115,9 +115,7 @@ const renderElement = (form: FormInstance, element: IFormSchemaMetaItem, schema:
                         return null;
                     }
                     if (typeof element.render === 'function') {
-                        return element.render.call(element, {
-                            form, formItemProps, element, Form,
-                        });
+                        return renderFunction();
                     }
                     if (schema.debug) {
                         console.warn('组件未渲染成功', element);
@@ -128,26 +126,61 @@ const renderElement = (form: FormInstance, element: IFormSchemaMetaItem, schema:
         );
     }
     if (typeof element.render === 'function') {
-        return element.render.call(element, {
-            form, formItemProps, element, Form,
-        });
+        return renderFunction();
     }
-    if (!Comp) {
-        if (schema.debug) {
-            console.warn('组件未渲染成功', element);
-        }
-        return null;
-    }
-    return (
-        <>
+
+    // 渲染按钮
+    if (element.type === 'Button') {
+        return (
             <Form.Item {...formItemProps}>
-                <Comp
-                    source={pickSource(element)}
-                    disabled={schema.disabled || element.disabled}
-                    {...(element.widgetProps || {})}
-                />
+                {(element.buttonMeta || []).map((item, index: number) => {
+                    const {
+                        children, childType, buttonClick, ...rest
+                    } = item;
+                    return (
+                        <React.Fragment key={index}>
+                            <Button
+                                onClick={async (e) => {
+                                    e.preventDefault();
+                                    if (childType === 'reset') {
+                                        form.resetFields();
+                                        if (isFunction(schema.onReset)) {
+                                            schema.onReset({
+                                                form,
+                                                buttonItem: item,
+                                                element,
+                                            });
+                                        }
+                                        return;
+                                    }
+                                    if (childType === 'submit') {
+                                        try {
+                                            await form.submit();
+                                        } catch (error) {
+                                            console.log(error);
+                                        }
+                                        return;
+                                    }
+                                    if (typeof buttonClick === 'function') {
+                                        buttonClick({
+                                            form,
+                                            buttonItem: item,
+                                            element,
+                                        });
+                                        return;
+                                    }
+                                    console.warn('请传入onClick函数');
+                                }}
+                                {...rest}
+                            >
+                                {children}
+                            </Button>
+                        </React.Fragment>
+                    );
+                })}
             </Form.Item>
-        </>
-    );
-};
+        );
+    }
+    return renderJsx();
+});
 export default renderElement;
