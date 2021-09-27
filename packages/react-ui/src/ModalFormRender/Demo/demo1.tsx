@@ -42,7 +42,7 @@ export default () => {
             <modal.RenderModal />
             <Button onClick={onClickComp}>打开弹框(组件用法)</Button>
             <ModalFormRender schema={schema} modalRef={modalRef}>
-                <Button onClick={() => setRequired(!required)}>切换必填</Button>
+                <Button onClick={() => setRequired(!required)}>必填非必填切换</Button>
             </ModalFormRender>
         </div>
     );

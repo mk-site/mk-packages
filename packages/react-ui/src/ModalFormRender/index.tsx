@@ -15,7 +15,6 @@ export interface IModalFormRender<T, K> {
     }
 }
 
-export { FormRender, IFormSchema };
 export interface IModalFormRenderProps {
     schema?: IFormSchema,
     modalRef?: any,
@@ -43,6 +42,8 @@ const ModalFormRender: React.FC<IModalFormRenderProps> = ({
     );
 };
 
+const ModalFormRenderBtn = () => {};
+
 // hooks用法
 function useModalFormRender<T= any, K = IUseModal>(props: IModalFormRenderProps): IModalFormRender<T, K> {
     const { schema } = props;
@@ -62,5 +63,6 @@ function useModalFormRender<T= any, K = IUseModal>(props: IModalFormRenderProps)
 
 export {
     ModalFormRender,
+    ModalFormRenderBtn,
     useModalFormRender,
 };
