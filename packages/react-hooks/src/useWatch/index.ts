@@ -10,7 +10,6 @@ const useWatch = <T = any>(
     callback: (prev: T | undefined) => void,
     config: Config = { immediate: false },
 ): (...args: any[]) => any => {
-    const { immediate } = config;
     const initRef = useRef(false);
     const prev = useRef<T>(dep);
     const stop = useRef(false);
@@ -31,7 +30,7 @@ const useWatch = <T = any>(
             }
             prev.current = dep;
         }
-    }, [dep, immediate]);
+    }, [dep, config.immediate]);
 
     // 外部可停止观察值
     return () => {
