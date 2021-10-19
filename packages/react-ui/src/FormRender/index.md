@@ -7,6 +7,10 @@ title: FormRender
 
 ### 基础用法
 
+<code src="./Demo/demo5.tsx"/>
+
+
+
 <code src="./Demo/demo0.tsx"/>
 
 <code src="./Demo/demo1.tsx"/>

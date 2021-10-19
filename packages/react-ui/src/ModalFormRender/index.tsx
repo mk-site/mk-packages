@@ -3,9 +3,10 @@ import React, { useImperativeHandle } from 'react';
 import { Form, FormInstance } from 'antd';
 import { FormRender, IFormSchema } from '../FormRender';
 import useModal, { IUseModal } from '../hooks/useModal';
+import usePersistFn from '../hooks/usePersistFn';
 
 export interface IModalFormRender<T, K> {
-    show: (childData?: T, modalData?: K) => () => void,
+    show: (modalData?: K, childData?: T) => () => void,
     hide: () => void,
     visible: boolean,
     RenderModal: any,
@@ -22,6 +23,9 @@ export interface IModalFormRenderProps {
 }
 
 // 组件用法
+/**
+ * 组件用法，使用ref获取组件实例
+ */
 const ModalFormRender: React.FC<IModalFormRenderProps> = ({
     schema, modalRef, children, beforeChildren,
 }) => {
@@ -33,27 +37,43 @@ const ModalFormRender: React.FC<IModalFormRenderProps> = ({
     }));
     return (
         <RenderModal>
-            <>
-                {beforeChildren}
-                <FormRender form={form} schema={schema} />
-                {children}
-            </>
+            {
+                (childProps) => (
+                    <>
+                        {beforeChildren}
+                        <FormRender form={form} schema={schema} {...childProps} />
+                        {children}
+                    </>
+                )
+            }
         </RenderModal>
     );
 };
 
-const ModalFormRenderBtn = () => {};
-
-// hooks用法
+/**
+ * 推荐使用  hooks用法
+ */
 function useModalFormRender<T= any, K = IUseModal>(props: IModalFormRenderProps): IModalFormRender<T, K> {
     const { schema } = props;
     const { RenderModal, ...rest } = useModal({});
     const [form] = Form.useForm();
-    const ModalComp = () => (
-        <RenderModal>
-            <FormRender form={form} schema={schema} />
-        </RenderModal>
-    );
+    const ModalComp = usePersistFn((modalProps?: any) => {
+        // eslint-disable-next-line no-shadow
+        const { children, beforeChildren } = modalProps || {};
+        return (
+            <RenderModal>
+                {
+                    (childProps) => (
+                        <>
+                            {beforeChildren}
+                            <FormRender form={form} schema={schema} {...childProps} />
+                            {children}
+                        </>
+                    )
+                }
+            </RenderModal>
+        );
+    });
     return {
         ...rest,
         form,
@@ -63,6 +83,5 @@ function useModalFormRender<T= any, K = IUseModal>(props: IModalFormRenderProps)
 
 export {
     ModalFormRender,
-    ModalFormRenderBtn,
     useModalFormRender,
 };

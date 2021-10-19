@@ -27,7 +27,7 @@
     "url": "git+https://github.com/mk-site/mk-packages.git"
   },
   "bugs": {
-      "url": "https://github.com/mk-site/mk-packages/issues"
+    "url": "https://github.com/mk-site/mk-packages/issues"
   },
   "homepage": "https://mk-site.github.io/mk-packages/",
   "devDependencies": {
@@ -35,9 +35,13 @@
     "@types/react-dom": "^17.0.8",
     "@umijs/test": "^3.5.13",
     "antd": "^4.16.9",
+    "babel-plugin-import": "^1.13.3",
     "eslint-config-mkscanner": "^1.0.2",
     "mk-better-cli": "0.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "rc-color-picker": "^1.2.6"
   }
 }

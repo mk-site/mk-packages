@@ -31,7 +31,7 @@ export default () => {
                 buttonMeta: [
                     {
                         type: 'primary',
-                        childType: 'reset',
+                        btnType: 'reset',
                         children: '重置',
                     },
                     {
@@ -42,7 +42,7 @@ export default () => {
                         style: {
                             margin: '0 12px',
                         },
-                        buttonClick: async ({ form }) => {
+                        onClick: async ({ form }) => {
                             console.log('form', form);
                             setLoading(true);
                             try {
@@ -59,7 +59,7 @@ export default () => {
                     },
                     {
                         children: '点击获取参数',
-                        buttonClick({ form }) {
+                        onClick({ form }) {
                             console.log('点击', form.getFieldsValue());
                         },
                     },

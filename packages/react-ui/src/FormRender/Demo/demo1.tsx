@@ -6,10 +6,10 @@ import { FormRender, IFormSchema } from './index';
 import 'antd/dist/antd.css';
 
 export default () => {
-    // const [form] = Form.useForm();
+    const [form] = Form.useForm();
     const onClick = async () => {
         // console.log(form.getFieldsValue());
-        // await form.submit();
+        await form.submit();
         console.log('结束');
     };
     const [schema, setSchema] = useState<IFormSchema>({
@@ -18,23 +18,23 @@ export default () => {
         onFinish: (values) => {
             console.log('values', values);
         },
-        onValuesChange: (changedValues) => {
-            console.log('变化', changedValues);
-            if (changedValues.userName) {
-                setSchema({
-                    ...schema,
-                    meta: schema.meta.map((item) => {
-                        if (item.name === 'enName') {
-                            return {
-                                ...item,
-                                visible: changedValues.userName.length > 2,
-                            };
-                        }
-                        return { ...item };
-                    }),
-                });
-            }
-        },
+        // onValuesChange: (changedValues) => {
+        //     console.log('变化', changedValues);
+        //     if (changedValues.userName) {
+        //         setSchema({
+        //             ...schema,
+        //             meta: schema.meta.map((item) => {
+        //                 if (item.name === 'enName') {
+        //                     return {
+        //                         ...item,
+        //                         visible: changedValues.userName.length > 2,
+        //                     };
+        //                 }
+        //                 return { ...item };
+        //             }),
+        //         });
+        //     }
+        // },
         labelCol: { span: 4 },
         wrapperCol: { span: 16 },
         meta: [
@@ -43,6 +43,9 @@ export default () => {
                 name: 'userName',
                 label: '用户名',
                 required: true,
+                onChange(e, obj) {
+                    console.log(e, obj);
+                },
             },
             {
                 visible: true, // 控制表单数据联动
@@ -51,9 +54,9 @@ export default () => {
                 label: 'en姓名',
                 required: true,
                 dependencies: ['userName'],
-                renderVisible: (obj) => {
+                onVisible: (obj) => {
                     const values = obj.form.getFieldsValue();
-                    if (values.userName && values.userName.length > 1) {
+                    if (values.userName && values.userName.length >= 1) {
                         return true;
                     }
                     return false;
@@ -83,7 +86,7 @@ export default () => {
     });
     return (
         <div>
-            <FormRender schema={schema} />
+            <FormRender form={form} schema={schema} />
             <Button onClick={onClick}>点击</Button>
         </div>
     );

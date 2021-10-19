@@ -29,7 +29,7 @@ export default () => {
                 label: '城市',
                 required: true,
                 // dependencies: ['province'],
-                // renderVisible: (obj) => {
+                // onVisible: (obj) => {
                 //     console.log(obj.form);
                 //     const values = obj.form.getFieldsValue();
                 //     console.log('渲染', obj.element, values);
@@ -46,8 +46,7 @@ export default () => {
                 display: showArea ? 'block' : 'none',
             },
             {
-                type: 'Input',
-                childType: 'TextArea',
+                type: 'TextArea',
                 name: 'problem',
                 label: '问题',
             },

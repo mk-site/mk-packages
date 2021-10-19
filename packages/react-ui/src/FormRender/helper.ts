@@ -76,10 +76,22 @@ const isFunction = (val: any) => {
     return false;
 };
 
+const hasOwnProperty = (obj: Record<string, any>, key: string) => Object.prototype.hasOwnProperty.call(obj, key);
+
+const defaultGetValueFromEvent = (valuePropName, ...args) => {
+    const event = args[0];
+    if (event && event.target && valuePropName in event.target) {
+        return event.target[valuePropName];
+    }
+    return event;
+};
+
 export {
     pickProps,
     FormPropsPickArray,
     FormItemPropsPickArray,
     getArray,
     isFunction,
+    hasOwnProperty,
+    defaultGetValueFromEvent,
 };

@@ -8,6 +8,9 @@ export default () => {
     const modalRef = useRef(null);
     const [required, setRequired] = useState(false);
     const schema: IFormSchema = useMemo(() => ({
+        // onFinish(val) {
+        //     console.log('调用', val);
+        // },
         meta: [
             {
                 type: 'Input',
@@ -18,13 +21,20 @@ export default () => {
         ],
     }), [required]);
     const modal = useModalFormRender({ schema });
-    const onClick = useCallback(() => {
-        console.log(modal.show({
+    const onClickHooks = useCallback(() => {
+        modal.show({
             title: '标题',
             onOk() {
+                console.log('点击');
                 modal.form.submit();
             },
-        }, {}));
+        }, {
+            a: 1,
+            b: 2,
+            onFinish(val) {
+                console.log('调用22', val);
+            },
+        });
     }, []);
 
     const onClickComp = useCallback(() => {
@@ -38,7 +48,7 @@ export default () => {
     }, []);
     return (
         <div>
-            <Button onClick={onClick} style={{ marginRight: 15 }}>打开弹框(hooks用法)</Button>
+            <Button onClick={onClickHooks} style={{ marginRight: 15 }}>打开弹框(hooks用法)</Button>
             <modal.RenderModal />
             <Button onClick={onClickComp}>打开弹框(组件用法)</Button>
             <ModalFormRender schema={schema} modalRef={modalRef}>
