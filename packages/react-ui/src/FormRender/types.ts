@@ -45,7 +45,8 @@ export interface IFormSchemaMetaItem extends FormItemProps {
     enumValues?: any[],
     format?: string, // 日期格式化，使用moment
     source?: IFormSourceItem[],
-    props?: FormItemProps, // 用在子组件上
+    // props?: FormItemProps, // 用在子组件上
+    formItemProps?: FormItemProps, // 用在子组件上
     onWidgetProps?: TNoopFunction, // 处理组件props
     widget?: React.ReactNode,
     widgetProps?: TNoopObject, // 用在组件上属性
@@ -80,7 +81,8 @@ export interface IFormSchemaMetaItem extends FormItemProps {
 }
 
 export interface IFormSchema extends FormProps {
-    props?: FormProps,
+    // props?: FormProps,
+    formProps?: FormProps,
     column?: number,
     marginBottom?: string | number,
     gutter?: Gutter | [Gutter, Gutter], // 表单数据间距

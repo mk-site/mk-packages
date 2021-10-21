@@ -57,7 +57,7 @@ const renderElement: React.FC<IRenderElementProps> = memo(({
         ...(schema.marginBottom ? { style: { marginBottom: schema.marginBottom } } : {}),
         ...pickProps(element, FormItemPropsPickArray),
         ...pickRules,
-        ...(element.props || {}),
+        ...(element.formItemProps || {}),
     };
     // // 优先使用本地传递的组件进行覆盖, 没有再查找系统自带功能
     let Comp: any;

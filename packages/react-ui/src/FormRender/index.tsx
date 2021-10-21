@@ -34,7 +34,7 @@ const FormRender: React.FC<IFormRender> = memo((props) => {
     }
     const formProps: FormProps = {
         ...pickProps(schema, FormPropsPickArray),
-        ...(schema.props || {}),
+        ...(schema.formProps || {}),
     };
     const renderRowLayout = usePersistFn((elements) => {
         if (column === 1) {
