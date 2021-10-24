@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Operations } from 'mk-react-ui';
-import Button from 'antd/lib/button';
-import Popconfirm from 'antd/lib/popconfirm';
-import 'antd/lib/button/style';
-import 'antd/lib/popconfirm/style';
+// import Button from 'antd/lib/button';
+// import Popconfirm from 'antd/lib/popconfirm';
+import { Button, Popconfirm } from 'antd';
 
 export default () => {
     const [layout, setLayout] = useState<'horizontal' |'vertical'>('horizontal');

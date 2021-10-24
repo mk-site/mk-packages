@@ -16,7 +16,7 @@ export interface IuseModalReturn<T, K> {
     }
 }
 
-function useModal<T = any, K = IUseModal>(options: IUseModal = {}, debug?: boolean):IuseModalReturn<T, K> {
+function useModal<T = any, K = IUseModal>(options: IUseModal = {}):IuseModalReturn<T, K> {
     const [visible, setVisible] = useState(false);
     const childRef = useRef<T>(null);
 
@@ -67,9 +67,6 @@ function useModal<T = any, K = IUseModal>(options: IUseModal = {}, debug?: boole
             props.title = React.cloneElement(props.title as any, {
                 customref,
             });
-        }
-        if (debug) {
-            console.log('RenderModal props => ', props);
         }
         const childProps = {
             ...(childRef.current || {}),

@@ -8,14 +8,15 @@ title: Operations
 
 ### Props
 
-| 参数 | 说明| 必须 | 类型 |
-|--|--|--| -- |
-| meta | 渲染列表数据 | 必须 | `Array<Item>` |
-| layout | 布局 | 可选 | `vertical | horizontal` |
-| className | 而外类名 | 可选 | `string` |
+| 参数 | 说明| 必须 | 类型 | 默认值 |
+|--|--|--| -- | -- |
+| meta | 渲染列表数据 | 必须 | `Array<IOperationItem>` | |
+| layout | 布局 | 可选 | `无` | `vertical(默认)或horizontal` | |
+| className | 类名 | 可选 | `string` | |
+| style | 样式 | 可选 | `React.CSSProperties` | `{}` | |
 
 
-#### Item
+### IOperationItem
 
 | 参数 | 说明| 必须 | 类型 | 默认值 |
 |--|--|--| -- | -- |
@@ -23,5 +24,6 @@ title: Operations
 | action | 点击执行函数 | 可选 | `function` | `无` |
 | render | 自定义渲染 | 可选 | `function` | `无` |
 | visible | 是否可见 | 可选 | `boolean` | `true` |
-| disable | 是否禁用 | 可选 | `boolean` | `false` |
+| onVisible | 是否可见 | 可选 | `function` | `无` |
+| disabled | 是否禁用 | 可选 | `boolean` | `false` |
 | style | 样式 | 可选 | `React.CSSProperties` | `{}` |
