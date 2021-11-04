@@ -1,6 +1,6 @@
 {
   "name": "mk-react-ui",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha2",
   "description": "",
   "main": "esm/index.js",
   "scripts": {

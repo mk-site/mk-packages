@@ -76,6 +76,7 @@ const renderElement: React.FC<IRenderElementProps> = memo(({
             if (element.valuePropName && typeof element.valuePropName === 'string') {
                 valuePropName = element.valuePropName;
             }
+
             const newVal = defaultGetValueFromEvent(valuePropName, val);
             element.onChange(newVal, {
                 e: val,
@@ -96,12 +97,7 @@ const renderElement: React.FC<IRenderElementProps> = memo(({
         }
         let compProps: any = {
             element,
-            handleChange,
-            // source: ,
-            // format: element.format,
-            // widgetChildProps: element.widgetChildProps,
-            // disabled: schema.disabled || element.disabled,
-            // readonly: schema.readonly || element.readonly,
+            onChange: handleChange,
             ...(element.widgetProps || {}),
         };
         const source = pickSource(element);

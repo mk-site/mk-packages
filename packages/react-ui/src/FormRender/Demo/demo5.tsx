@@ -19,6 +19,9 @@ export default () => {
                 type: 'Input',
                 name: 'userName',
                 label: '用户名',
+                onChange(val) {
+                    console.log('外部变化', val);
+                },
                 // required: true,
             },
             {
@@ -37,7 +40,7 @@ export default () => {
                 name: 'genderCheckboxBoolean',
                 label: '勾选',
                 children: '请同意协议',
-                valuePropName: 'checked',
+                // valuePropName: 'checked',
                 onChange: (val) => {
                     console.log('Checkbox值变化', val);
                 },
@@ -56,6 +59,9 @@ export default () => {
                 enumLabels: ['男', '女'],
                 // @ts-ignore
                 enumValues: [1, 2],
+                onChange: (val) => {
+                    console.log('Checkbox值变化', val);
+                },
             },
             {
                 type: 'MultiSelect',
@@ -95,7 +101,7 @@ export default () => {
             },
             {
                 type: 'DatePicker',
-                name: 'time',
+                name: 'DatePicker-日期',
                 // format: 'dateTime',
                 label: '单日期',
                 onChange: (val) => {
@@ -109,6 +115,34 @@ export default () => {
                 label: '日期范围',
                 onChange: (val) => {
                     console.log('DateRangePicker 值变化', val);
+                },
+            },
+            {
+                type: 'Cascader',
+                name: 'province-city',
+                // format: 'dateTime',
+                label: '省市联动',
+                source: [
+                    {
+                        label: '江苏省',
+                        value: 'js',
+                        children: [
+                            {
+                                label: '南京',
+                                value: 'nj',
+                            },
+                            {
+                                label: '苏州',
+                                value: 'sz',
+                            },
+                        ],
+                    },
+                ],
+                widgetProps: {
+                    placeholder: '请选择',
+                },
+                onChange: (val) => {
+                    console.log('省市联动 值变化', val);
                 },
             },
             {
@@ -146,5 +180,13 @@ export default () => {
             },
         ],
     };
-    return <FormRender form={form} schema={schema} />;
+    return (
+        <FormRender
+            form={form}
+            schema={schema}
+            onValuesChange={(a, b) => {
+                console.log('formchange', a, b);
+            }}
+        />
+    );
 };

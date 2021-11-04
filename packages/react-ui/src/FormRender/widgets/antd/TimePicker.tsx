@@ -3,23 +3,18 @@ import React from 'react';
 import moment from 'moment';
 import { TimePicker } from 'antd';
 import { getFormat } from '../../utils';
-import usePersistFn from '../../../hooks/usePersistFn';
+import 'antd/es/time-picker/style/index';
 
 const Component = ({
-    onChange, handleChange, format, value, style, element, ...rest
+    onChange, format, value, style, widgetChildProps, element, ...rest
 }) => {
     const timeFormat = getFormat(format);
-    const timeValue = value ? moment(value, timeFormat) : undefined;
-
-    const changeFunction = usePersistFn((e, val) => {
-        onChange(val);
-        handleChange(val);
-    });
+    const timeValue = value ? moment(value) : undefined;
 
     const timeParams = {
         value: timeValue,
         style: { width: '100%', ...style },
-        onChange: changeFunction,
+        onChange,
         ...rest,
     };
 

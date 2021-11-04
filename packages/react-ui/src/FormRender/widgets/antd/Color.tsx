@@ -123,18 +123,16 @@ const getAlphaFromHex = (hex = '#ffffff') => {
 };
 
 const Component = ({
-    onChange, handleChange, format, value, style, element, ...rest
+    onChange, format, value, style, widgetChildProps, element, ...rest
 }) => {
     const onPickerChange = (e) => {
         if (rest.disabled || rest.readonly) return;
         const alphaHex = alphaHexMap[(e.alpha / 100).toFixed(2)];
         const hex = e.color + (e.alpha === 100 ? '' : alphaHex);
         onChange(hex);
-        handleChange(hex);
     };
     const onInputChange = (e) => {
         onChange(e.target.value);
-        handleChange(e.target.value);
     };
 
     return (

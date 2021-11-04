@@ -1,5 +1,5 @@
 import {
-    Input, Rate, Checkbox, InputNumber, Switch,
+    Input, Rate, InputNumber, Switch,
 } from 'antd';
 import { createBaseWidget } from './createWidget';
 import CheckboxGroup from './antd/Checkbox';
@@ -10,6 +10,13 @@ import Color from './antd/Color';
 import TimePicker from './antd/TimePicker';
 import DatePicker from './antd/DatePicker';
 import DateRangePicker from './antd/DateRangePicker';
+import CheckSingle from './antd/CheckSingle';
+import Cascader from './antd/Cascader';
+
+import 'antd/es/input/style/index';
+import 'antd/es/Rate/style/index';
+import 'antd/es/input-number/style/index';
+import 'antd/es/switch/style/index';
 
 // 组件列表
 
@@ -19,11 +26,7 @@ const widgets = {
         autoSize: autoSize || { minRows: 3 },
     }))(Input.TextArea),
     InputNumber: createBaseWidget(({ style }) => ({ style: { width: '100%', ...style } }))(InputNumber),
-    Checkbox: createBaseWidget(({ widgetsProps }) => {
-        // eslint-disable-next-line no-param-reassign
-        delete widgetsProps.value;
-        return {};
-    })(Checkbox),
+    Checkbox: CheckSingle,
     Rate: createBaseWidget()(Rate),
     Switch: createBaseWidget()(Switch),
     CheckboxGroup,
@@ -35,6 +38,7 @@ const widgets = {
     Radio,
     Color,
     UrlInput,
+    Cascader,
 };
 export const setWidgets = (key: string, val: any) => {
     widgets[key] = val;

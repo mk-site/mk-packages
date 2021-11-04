@@ -13,6 +13,7 @@ export interface IButtonListItem extends ButtonProps {
     style?: React.CSSProperties;
     render?: (children: ReactElement, item: IButtonListItem) => ReactElement;
 }
+const hasOwnProperty = (obj: Record<string, any>, key: string) => Object.prototype.hasOwnProperty.call(obj, key);
 
 const ButtonList = (props: { className?: string; meta: IButtonListItem[]; style?:React.CSSProperties; }) => {
     const { meta, className } = props;
@@ -20,7 +21,15 @@ const ButtonList = (props: { className?: string; meta: IButtonListItem[]; style?
         <div className={`${className}`} style={props.style}>
             {
                 meta
-                    .filter((item) => item.visible || (typeof item.onVisible === 'function' && item.onVisible(item)))
+                    .filter((item) => {
+                        if (hasOwnProperty(item, 'visible')) {
+                            return item.visible;
+                        }
+                        if (typeof item.onVisible === 'function') {
+                            return item.onVisible(item);
+                        }
+                        return true;
+                    })
                     .map((item, index) => {
                         const {
                             // eslint-disable-next-line @typescript-eslint/no-unused-vars

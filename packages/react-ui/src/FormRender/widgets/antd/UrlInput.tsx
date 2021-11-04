@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { Input } from 'antd';
 import { isUrl } from '../../utils';
-import usePersistFn from '../../../hooks/usePersistFn';
 
 const TestNode = ({ value }) => {
     const useUrl = isUrl(value);
@@ -17,13 +15,7 @@ const TestNode = ({ value }) => {
 };
 
 const UrlInput = ({
-    onChange, handleChange, value, element, ...rest
-}) => {
-    const changeFunction = usePersistFn((val) => {
-        onChange(val);
-        handleChange(val);
-    });
-    return <Input onChange={changeFunction} value={value} addonAfter={<TestNode value={value} />} {...rest} />;
-};
+    onChange, value, element, widgetChildProps, ...rest
+}) => <Input onChange={onChange} value={value} addonAfter={<TestNode value={value} />} {...rest} />;
 
 export default UrlInput;

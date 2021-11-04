@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
@@ -7,7 +6,7 @@ import { getFormat } from '../../utils';
 const { RangePicker } = DatePicker;
 
 const Component = ({
-    onChange, handleChange, format, value, style, element, ...rest
+    onChange, format, value, style, widgetChildProps, element, ...rest
 }) => {
     const dateFormat = getFormat(format);
     let [start, end] = Array.isArray(value) ? value : [];
@@ -21,12 +20,13 @@ const Component = ({
     let datevalue = [];
 
     if (start && end) {
-        datevalue = [moment(start, dateFormat), moment(end, dateFormat)];
+        datevalue = [moment(start), moment(end)];
     }
 
     const changeFunction = (val, valArray) => {
-        onChange(valArray);
-        handleChange(valArray);
+        if (onChange) {
+            onChange(valArray);
+        }
     };
 
     let dateProps: any = {

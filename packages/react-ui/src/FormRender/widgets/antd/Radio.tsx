@@ -1,10 +1,9 @@
 import React from 'react';
 import { Radio } from 'antd';
-/* eslint-disable react/no-danger */
-import usePersistFn from '../../../hooks/usePersistFn';
+import 'antd/es/radio/style/index';
 
 const Component = ({
-    onChange, handleChange, value, element, widgetChildProps, style, source, ...rest
+    onChange, value, element, widgetChildProps, style, source, ...rest
 }) => {
     const radioProps = {
         style: { width: '100%', ...style },
@@ -13,12 +12,8 @@ const Component = ({
     const radioItemProps = {
         ...widgetChildProps,
     };
-    const changeFunction = usePersistFn((val) => {
-        onChange(val);
-        handleChange(val);
-    });
     return (
-        <Radio.Group value={value} onChange={changeFunction} {...radioProps}>
+        <Radio.Group value={value} onChange={onChange} {...radioProps}>
             {
                 (source || []).map((item, index) => {
                     const key = item.value || index;

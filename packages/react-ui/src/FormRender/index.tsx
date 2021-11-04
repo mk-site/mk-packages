@@ -9,7 +9,7 @@ import {
     Form, FormProps, Row, Col,
 } from 'antd';
 import 'antd/lib/form/style/css';
-import { setWidgets } from './widgets';
+import widgets, { setWidgets } from './widgets';
 import { IFormRender, TNoopObject } from './types';
 import { FormPropsPickArray, pickProps, hasOwnProperty } from './helper';
 import RenderElement from './renderElement';
@@ -125,9 +125,13 @@ const FormRenderSetGlobalWidgets = (widget: TNoopObject) => {
         }
     }
 };
+const getWidgets = () => ({
+    ...widgets,
+});
 
 export {
     createBaseWidget,
+    getWidgets,
     FormRender,
     FormRenderSetGlobalWidgets,
 };

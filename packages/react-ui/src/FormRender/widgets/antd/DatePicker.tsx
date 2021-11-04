@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import { getFormat } from '../../utils';
-
-const { RangePicker } = DatePicker;
+import 'antd/es/date-picker/style/index';
 
 const Component = ({
-    onChange, handleChange, format, value, style, element, ...rest
+    onChange, format, value, style, widgetChildProps, element, ...rest
 }) => {
     const dateFormat = getFormat(format);
     let _value = value || undefined;
@@ -18,20 +16,16 @@ const Component = ({
         }
     }
     if (_value) {
-        _value = moment(_value, dateFormat);
+        _value = moment(_value);
     }
-
-    const changeFunction = (c, val) => {
-        onChange(val);
-        handleChange(val);
-    };
-
     const dateProps = {
         showTime: false,
         format: dateFormat,
         value: _value,
         style: { width: '100%', ...style },
-        onChange: changeFunction,
+        onChange: (val) => {
+            onChange(moment(val).format(dateFormat));
+        },
         ...rest,
     };
     if (format === 'dateTime') {

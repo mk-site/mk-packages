@@ -1,12 +1,12 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { Select } from 'antd';
-import usePersistFn from '../../../hooks/usePersistFn';
+import 'antd/es/select/index';
 
 const { Option } = Select;
 
 const Component = ({
-    onChange, handleChange, value, element, widgetChildProps, style, source, ...rest
+    onChange, value, element, widgetChildProps, style, source, ...rest
 }) => {
     const selectParams = {
         style: { width: '100%', ...style },
@@ -15,14 +15,8 @@ const Component = ({
     const childParams = {
         ...widgetChildProps,
     };
-    const changeFunction = usePersistFn((val) => {
-        onChange(val);
-        if (handleChange) {
-            handleChange(val);
-        }
-    });
     return (
-        <Select value={value} onChange={changeFunction} {...selectParams}>
+        <Select value={value} onChange={onChange} {...selectParams}>
             {
                 (source || []).map((item, index) => {
                     const key = item.value || index;
