@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { Select } from 'antd';
-import 'antd/es/select/index';
+import 'antd/es/select/style/index';
 
 const { Option } = Select;
 
@@ -20,7 +20,7 @@ const Component = ({
             {
                 (source || []).map((item, index) => {
                     const key = item.value || index;
-                    let label = item[element.sourceLabelMap] || item.label;
+                    let label = item[element?.sourceLabelMap] || item.label;
                     const isHtml = typeof label === 'string' && label[0] === '<';
                     if (isHtml) {
                         label = <span dangerouslySetInnerHTML={{ __html: label }} />;
@@ -28,7 +28,7 @@ const Component = ({
                     return (
                         <Option
                             key={key}
-                            value={item[element.sourceValueMap] || item.value}
+                            value={item[element?.sourceValueMap] || item.value}
                             {...childParams}
                         >
                             {label}

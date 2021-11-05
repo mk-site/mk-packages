@@ -46,7 +46,7 @@ export interface IFormSchemaMetaItem extends FormItemProps {
     format?: string, // 日期格式化，使用moment
     source?: IFormSourceItem[],
     // props?: FormItemProps, // 用在子组件上
-    formItemProps?: FormItemProps, // 用在子组件上
+    formItemProps?: FormItemProps, // 用在Form.Item组件上
     onWidgetProps?: TNoopFunction, // 处理组件props
     widget?: React.ReactNode,
     widgetProps?: TNoopObject, // 用在组件上属性

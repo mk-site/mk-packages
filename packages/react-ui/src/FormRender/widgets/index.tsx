@@ -1,5 +1,5 @@
 import {
-    Input, Rate, InputNumber, Switch,
+    Input, Rate, InputNumber, Switch, Slider,
 } from 'antd';
 import { createBaseWidget } from './createWidget';
 import CheckboxGroup from './antd/Checkbox';
@@ -28,6 +28,7 @@ const widgets = {
     InputNumber: createBaseWidget(({ style }) => ({ style: { width: '100%', ...style } }))(InputNumber),
     Checkbox: CheckSingle,
     Rate: createBaseWidget()(Rate),
+    Slider: createBaseWidget()(Slider),
     Switch: createBaseWidget()(Switch),
     CheckboxGroup,
     DatePicker,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 import { isUrl } from '../../utils';
 
-const TestNode = ({ value }) => {
+const LinkNode = ({ value }) => {
     const useUrl = isUrl(value);
     if (useUrl) {
         return (
@@ -16,6 +16,6 @@ const TestNode = ({ value }) => {
 
 const UrlInput = ({
     onChange, value, element, widgetChildProps, ...rest
-}) => <Input onChange={onChange} value={value} addonAfter={<TestNode value={value} />} {...rest} />;
+}) => <Input onChange={onChange} value={value} addonAfter={<LinkNode value={value} />} {...rest} />;
 
 export default UrlInput;

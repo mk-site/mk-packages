@@ -7792,6 +7792,13 @@ mk-better-cli@^0.0.13:
     typescript "^4.3.4"
     vinyl-fs "^3.0.3"
 
+mk-react-ui@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/mk-react-ui/-/mk-react-ui-0.0.2.tgz#d8e44ea732bb5cf03abf0f26fdfa772b31e783fe"
+  integrity sha512-CcT+NvMvrMJ2qOWYrc34uL9nv+CR/cZnCNBT5cHxWQ+Rg1ExJPVl8h67WFafxBaF7TSOgkg9hru6yLLFA/qKGQ==
+  dependencies:
+    rc-color-picker "^1.2.6"
+
 mkdirp@^0.5.1:
   version "0.5.5"
   resolved "http://npm.taimei.com:80/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"

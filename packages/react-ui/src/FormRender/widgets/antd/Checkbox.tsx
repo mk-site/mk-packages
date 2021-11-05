@@ -17,7 +17,7 @@ const Component = ({
             {
                 (source || []).map((item, index) => {
                     const key = item.value || index;
-                    let label = item[element.sourceLabelMap] || item.label;
+                    let label = item[element?.sourceLabelMap] || item.label;
                     const isHtml = typeof label === 'string' && label[0] === '<';
                     if (isHtml) {
                         label = <span dangerouslySetInnerHTML={{ __html: label }} />;
@@ -25,7 +25,7 @@ const Component = ({
                     return (
                         <Checkbox
                             key={key}
-                            value={item[element.sourceValueMap] || item.value}
+                            value={item[element?.sourceValueMap] || item.value}
                             {...radioItemProps}
                         >
                             {label}
