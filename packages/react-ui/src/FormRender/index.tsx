@@ -120,7 +120,7 @@ const FormRender: React.FC<IFormRender> = memo((props) => {
 const FormRenderSetGlobalWidgets = (widget: TNoopObject) => {
     // eslint-disable-next-line no-restricted-syntax
     for (const key in widget) {
-        if (hasOwnProperty(widget, key)) {
+        if (!hasOwnProperty(widgets, key)) {
             setWidgets(key, widget[key]);
         }
     }

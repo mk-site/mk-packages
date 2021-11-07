@@ -1,5 +1,5 @@
 import {
-    Input, Rate, InputNumber, Switch, Slider,
+    Input, Rate, InputNumber, Slider,
 } from 'antd';
 import { createBaseWidget } from './createWidget';
 import CheckboxGroup from './antd/Checkbox';
@@ -12,11 +12,12 @@ import DatePicker from './antd/DatePicker';
 import DateRangePicker from './antd/DateRangePicker';
 import CheckSingle from './antd/CheckSingle';
 import Cascader from './antd/Cascader';
+import Switch from './antd/Switch';
 
 import 'antd/es/input/style/index';
 import 'antd/es/Rate/style/index';
 import 'antd/es/input-number/style/index';
-import 'antd/es/switch/style/index';
+import 'antd/es/slider/style/index';
 
 // 组件列表
 
@@ -29,7 +30,7 @@ const widgets = {
     Checkbox: CheckSingle,
     Rate: createBaseWidget()(Rate),
     Slider: createBaseWidget()(Slider),
-    Switch: createBaseWidget()(Switch),
+    Switch,
     CheckboxGroup,
     DatePicker,
     DateRangePicker,

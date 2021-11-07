@@ -33,7 +33,7 @@ const FormPropsPickArray = [
 ];
 const FormItemPropsPickArray = [
     'className',
-    'style',
+    // 'style',
     'colon',
     'dependencies',
     'extra',

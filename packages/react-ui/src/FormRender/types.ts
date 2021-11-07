@@ -84,6 +84,7 @@ export interface IFormSchema extends FormProps {
     // props?: FormProps,
     formProps?: FormProps,
     column?: number,
+    formItemProps?: Record<string, any>,
     marginBottom?: string | number,
     gutter?: Gutter | [Gutter, Gutter], // 表单数据间距
     RowProps?: RowProps, // column > 1

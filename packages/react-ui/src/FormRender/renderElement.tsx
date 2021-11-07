@@ -54,9 +54,10 @@ const renderElement: React.FC<IRenderElementProps> = memo(({
 }) => {
     const pickRules: PickRules = rulesRequired(element.rules, element);
     const formItemProps = {
-        ...(schema.marginBottom ? { style: { marginBottom: schema.marginBottom } } : {}),
+        ...(schema.marginBottom ? { style: { marginBottom: schema.marginBottom, ...(element.style || {}) } } : element.style || {}),
         ...pickProps(element, FormItemPropsPickArray),
         ...pickRules,
+        ...(schema.formItemProps || {}),
         ...(element.formItemProps || {}),
     };
     // // 优先使用本地传递的组件进行覆盖, 没有再查找系统自带功能
